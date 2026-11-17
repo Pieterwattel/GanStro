@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Ganstro</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body id="body">
+    <header class="site-header">
+      <img src="./ireland-flag-25.gif" alt="ireland flag" />
+      <img src="./ireland-flag-25.gif" alt="ireland flag" />
+      <img src="./ireland-flag-25.gif" alt="ireland flag" />
+      <img src="./ireland-flag-25.gif" alt="ireland flag" />
+      <img src="./ireland-flag-25.gif" alt="ireland flag" />
+
+    </header>
+
+    <main>
+      (Gan Stró is a very chaotic projectband that exists once a year during st patricks day and does a round along as many pubs as they can)
+
+        <h1>Is Gan Stró! playing today?</h1>
+        <h3>No.. :&#40;</h3>
+
+  <img id="randomImage" alt="Random pic">
+
+  <p id="statusText"></p>
+
+  <script>
+  window.onload = function() {
+    const images = [
+      "pics/All of Gan Stró! says.png",
+      "pics/Boet says.png",
+      "pics/Fiddle Henjo yells.png",
+      "pics/Henjo says.png",
+      "pics/Jaro whispers.png",
+      "pics/Omar and Jaro say.png",
+      "pics/Pieter and Henjo say.png",
+      "pics/Pieter, Boet, Selma and Jaro say.png",
+      "pics/Joosje says.png"
+    ];
+
+    const imgElement = document.getElementById("randomImage");
+    const statusElement = document.getElementById("statusText");
+    let lastIndex = -1;
+
+    function daysUntilStPatricks() {
+      const today = new Date();
+      let target = new Date(today.getFullYear(), 2, 17); // 2 = March
+      if (today > target) target = new Date(today.getFullYear() + 1, 2, 17);
+      return Math.ceil((target - today) / (1000 * 60 * 60 * 24));
+    }
+
+    function showRandomImage() {
+      // pick a random picture, never the same one twice in a row
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * images.length);
+      } while (randomIndex === lastIndex && images.length > 1);
+      lastIndex = randomIndex;
+
+      const selectedImage = images[randomIndex];
+      if (imgElement) imgElement.src = selectedImage;
+
+      // filename without folder and extension, e.g. "Boet says"
+      const filename = selectedImage.split("/").pop().replace(/\.[^.]+$/, "");
+
+      if (statusElement) {
+        statusElement.textContent = `${filename}: it's still ${daysUntilStPatricks()} days until st patricks day!`;
+      }
+    }
+
+    // preload all pictures so switching is instant
+    images.forEach(src => { new Image().src = src; });
+
+    showRandomImage();
+    setInterval(showRandomImage, 6000); // change every 6 seconds
+  };
+  </script>
+    </main>
+
+    <div class="exclaims-strip" aria-hidden="true"></div>
+
+    <footer class="site-header">
+      <img src="./clover.png" alt="clover" />
+      <img src="./clover.png" alt="clover" />
+      <img src="./clover.png" alt="clover" />
+      <img src="./clover.png" alt="clover" />
+      <img src="./clover.png" alt="clover" />
+      <img src="./clover.png" alt="clover" />
+    </footer>
+    <script src="js/main.js"></script>
+  </body>
+</html>

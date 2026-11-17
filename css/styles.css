@@ -1,0 +1,108 @@
+body {
+  min-height: 100dvh;
+  background-image: url("../beerBG.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+*{
+    color: white !important;
+}
+
+header{
+        display: flex;
+      justify-content: space-around;
+      flex-direction: row;
+      align-items: center;
+      padding: 1rem;
+      max-width: 100vw;
+}
+
+header>img{
+        max-height: 10vh;
+        width: auto;
+        max-width: 18vw;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+main>img{
+    max-width: 60vw;
+    max-height: 40vh;
+    height: auto;
+}
+
+.curved-text {
+  width: 100%;
+  height: auto;
+}
+
+.curved-text text {
+  font-size: 20px;
+  fill: white; /* change color */
+}
+
+footer{
+      display: flex;
+      justify-content: space-around;
+      flex-direction: row;
+      align-items: center;
+      padding-bottom: 1rem;
+      max-width: 100vw;
+      position:fixed;
+      width: 100%;
+      bottom:0;
+}
+
+footer>img{
+        max-height: 10vh;
+        width: auto;
+        max-width: 13vw;
+}
+
+/* Gan Stró! exclaims: repeated strip along the bottom of the screen,
+   behind the clovers but in front of the beer background */
+.exclaims-strip{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: calc(20vw * 251 / 323); /* 20vw wide picture, original 323x251 ratio */
+    background-image: url("../pics/Gan Stró! exclaims.png");
+    background-size: 20vw auto;
+    background-repeat: repeat-x;
+    background-position: left bottom;
+    z-index: 0;
+    pointer-events: none;
+}
+
+footer{
+    z-index: 1; /* clovers on top of the strip */
+}
+
+body{
+    padding-bottom: calc(20vw * 251 / 323); /* keep content clear of the strip */
+}
+
+@media (max-width: 768px){
+    .exclaims-strip{
+        height: calc(50vw * 251 / 323);
+        background-size: 50vw auto;
+    }
+
+    body{
+        padding-bottom: calc(50vw * 251 / 323);
+    }
+}
+
+/* keep the text and random picture on top of the bottom strip */
+main{
+    position: relative;
+    z-index: 1;
+}
